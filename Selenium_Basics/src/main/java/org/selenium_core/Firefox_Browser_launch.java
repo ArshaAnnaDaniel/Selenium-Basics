@@ -9,6 +9,13 @@ public class Firefox_Browser_launch {
 		WebDriver driver = new FirefoxDriver();
 		driver.get("https://demowebshop.tricentis.com/"); //loading web url
 		driver.manage().window().maximize();  // to maximize the window
+		String page_title=driver.getTitle();
+		System.out.println(page_title);
+		String page_url=driver.getCurrentUrl();
+		System.out.println(page_url);
+		String page_source=driver.getPageSource(); //get html code
+		System.out.println(page_source);
+		driver.close();
 
 
 	}
