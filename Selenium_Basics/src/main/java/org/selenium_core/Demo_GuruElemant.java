@@ -27,7 +27,7 @@ public class Demo_GuruElemant {
 		WebElement postalcode_element=driver.findElement(By.name("postalCode"));
 		postalcode_element.sendKeys("690102");
 		WebElement country_element=driver.findElement(By.name("country"));
-		country_element.sendKeys("india");
+		//country_element.sendKeys("india");
 		WebElement username_element=driver.findElement(By.id("email"));
 		username_element.sendKeys("arsha");
 		WebElement password_element=driver.findElement(By.name("password"));
