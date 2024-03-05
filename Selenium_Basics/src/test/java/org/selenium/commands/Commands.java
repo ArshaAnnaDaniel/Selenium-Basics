@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -105,6 +106,49 @@ public class Commands extends Browser_Launch {
 		WebElement home_email=driver.findElement(By.cssSelector(".account"));
 		Assert.assertEquals(home_email.getText(),s,"Invalid login");
 		System.out.println(home_email.getText());
+		
+	}
+	@Test
+	public void verifyValuesFromDropdown()
+	{
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+		WebElement countryDropdown=driver.findElement(By.xpath("//select[@name='country']"));
+		Select select=new Select(countryDropdown);
+		//select.deselectByVisibleText("INDIA");
+		//select.selectByIndex(5);
+		select.selectByValue("AMERICAN SAMOA");
+		WebElement getCountryName=select.getFirstSelectedOption();
+		System.out.println(getCountryName.getText());
+
+		//select.getFirstSelectedOption("");
+		
+	}
+	@Test
+	
+	public void verifyTotalNoofDropdownValues()
+	{
+		driver.get("https://demo.guru99.com/test/newtours/register.php");
+		WebElement countryDropdown=driver.findElement(By.xpath("//select[@name='country']"));
+		Select select=new Select(countryDropdown);
+		List<WebElement>listofdropdownelements=select.getOptions();
+		System.out.println(listofdropdownelements.size());
+	}
+	@Test
+	public void verifyMultiSelectDropdown()
+	{
+		driver.get("https://selenium.qabible.in/select-input.php");
+		WebElement multiselect=driver.findElement(By.xpath("//select[@id='multi-select-field']"));
+		Select select=new Select(multiselect);
+		boolean selectedvalue=select.isMultiple();
+		System.out.println(selectedvalue);
+		select.selectByVisibleText("Red");
+		select.selectByVisibleText("Yellow");
+		List<WebElement>listofselectedvalues=select.getAllSelectedOptions();
+		for(WebElement e:listofselectedvalues)
+		{
+			System.out.println(e.getText());
+		}
+		select.deselectByValue("Red");
 		
 	}
 
