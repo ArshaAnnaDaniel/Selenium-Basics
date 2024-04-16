@@ -1,4 +1,4 @@
-package org.selenium.commands;
+package automation_core;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,8 +13,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
-public class Browser_Launch {
+public class Base {
 	public WebDriver driver;
 	public void Initialize_Browser(String browser)
 	{
@@ -36,7 +37,7 @@ public class Browser_Launch {
 		}
 		driver.manage().window().maximize();
 	}
-	@AfterMethod
+	@AfterMethod(alwaysRun=true)
 	public void closeBrowser(ITestResult result) throws IOException
 	{
 		if(result.getStatus()==ITestResult.FAILURE)
@@ -46,20 +47,23 @@ public class Browser_Launch {
 	
 		driver.close();
 	}
-	@BeforeMethod
-	public void setup()
+	
+	@BeforeMethod(alwaysRun=true)
+	@Parameters({"browser","baseurl"})
+
+	public void setup(String browsername, String url)
 	{
-		Initialize_Browser("chrome");
+		Initialize_Browser(browsername);
+		driver.get(url);
 	}
 	
 	public void takeScreenshot(ITestResult result) throws IOException
 	{
-		TakesScreenshot takescreenshot=(TakesScreenshot) driver;                             //create reference
-		File screenshot=takescreenshot.getScreenshotAs(OutputType.FILE);                     //getscreenshot are stored in to file
-		FileUtils.copyFile(screenshot, new File("./ScreenShot/"+result.getName()+".png"));   //create a folder
+		TakesScreenshot takescreenshot=(TakesScreenshot) driver;                            
+		File screenshot=takescreenshot.getScreenshotAs(OutputType.FILE);                     
+		FileUtils.copyFile(screenshot, new File("./ScreenShot/"+result.getName()+".png"));   
 		
 		
 	}
-
 
 }
