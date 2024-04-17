@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import automation_core.Base;
 import pages.HomePage;
+import pages.RegisterConfirmPage;
 import pages.RegistrationPage;
 
 public class RegistrationPageTest extends Base{
@@ -42,8 +43,10 @@ public class RegistrationPageTest extends Base{
 	  //WebElement register=driver.findElement(By.xpath("/html/body/div[4]/div[1]/div[1]/div[2]/div[1]/ul/li[1]/a"));
 	 // register.click();
 	  HomePage home=new HomePage(driver);
-	  RegistrationPage register=home.clickOnRegisterMenu();
-	
+	  RegistrationPage regi_ster=home.clickOnRegisterMenu();
+	  RegistrationPage register= new RegistrationPage(driver);
+	  
+
 	  WebElement gender=driver.findElement(By.xpath("//input[@id='gender-female']"));
 	  gender.click();
 	  WebElement first_name=driver.findElement(By.id("FirstName"));
@@ -57,10 +60,10 @@ public class RegistrationPageTest extends Base{
 	  pass.sendKeys(password);
 	  WebElement con_pass=driver.findElement(By.id("ConfirmPassword"));
 	  con_pass.sendKeys(password);
-	  WebElement register_click=driver.findElement(By.id("register-button"));
-	  register_click.click();
-	  WebElement user_email_field=driver.findElement(By.className("account"));
-	  String actual_email=user_email_field.getText();
+	  RegisterConfirmPage regi_con=register.clickOnRegisterButton();
+	  String actual_email=regi_con.userGetText();
+	  //WebElement user_email_field=driver.findElement(By.className("account"));
+	  
 	  
 	  Assert.assertEquals(actual_email,email, Messages.USER_REGISTRATION_FAIL);
 

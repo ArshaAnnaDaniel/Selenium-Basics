@@ -16,10 +16,10 @@ public RegistrationPage(WebDriver driver)
 	@FindBy(xpath="//input[@id='register-button']")
 	WebElement RegisterButton;
 	
-	public UserAccount clickOnRegisterButton()
+	public RegisterConfirmPage clickOnRegisterButton()
 	{
 		WebElementUtility.clickOnElement(RegisterButton);
-		return new UserAccount(driver);
+		return new RegisterConfirmPage(driver);
 	}
 
 }

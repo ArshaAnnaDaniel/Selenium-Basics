@@ -6,8 +6,7 @@
 		<parameter name="baseurl" value="https://demowebshop.tricentis.com/"/>
         <classes>
             
-            <class name="test.HomePageTest"/>
-            <class name="test.LoginPageTest"/>
+            
             <class name="test.RegistrationPageTest"/>
 		  
 		  
@@ -19,8 +18,7 @@
 		<parameter name="browser" value="chrome"/>
 		<parameter name="baseurl" value="https://demowebshop.tricentis.com/"/>
         <classes>
-            <class name="test.HomePageTest"/>
-            <class name="test.LoginPageTest"/>
+           
 		    <class name="test.RegistrationPageTest"/>
         </classes>
     </test>
